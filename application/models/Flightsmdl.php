@@ -35,6 +35,8 @@ class Flightsmdl extends CSV_Model
     // Retrieve a single flight data point, by index, used only with DataMapper
     public function get($which, $unused = 0)
     {
+      echo $which;
+
         return !isset($this->data[$which]) ? null : $this->data[$which];
     }
 

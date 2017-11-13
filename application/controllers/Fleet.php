@@ -22,16 +22,13 @@ class Fleet extends Application
         if ($role == ROLE_OWNER) {
             $this->data['modebutton'] = '<a href="/roles/actor/Guest" class="btn btn-info" role="button">Mode: Admin</a>';
             $this->data['modebutton'] .= $this->parser->parse('addfleet', [], true);
-            // Get all planes in our fleet model
-            $fleet = $this->fleetmdl->all();
             $this->data['pagebody'] = 'fleetadmin';
         } else {
             $this->data['modebutton'] = '<a href="/roles/actor/Owner" class="btn btn-info" role="button">Mode: User</a>';
-            // Get all planes in our fleet model
-            $fleet = $this->fleetmdl->all();
             $this->data['pagebody'] = 'fleet';
         }
-        $this->data['fleet'] = $fleet;
+        $this->data['fleet'] = $this->fleetmdl->all();
+        ;
         $this->render();
     }
 
@@ -50,15 +47,15 @@ class Fleet extends Application
             $this->data['pagebody'] = 'plane';
         }
 
-        $this->data['id'] = $plane->id;
-        $this->data['make'] = $plane->manufacturer;
-        $this->data['model'] = $plane->model;
-        $this->data['price'] = $plane->price;
-        $this->data['seats'] = $plane->seats;
-        $this->data['reach'] = $plane->reach;
-        $this->data['cruise'] = $plane->cruise;
-        $this->data['takeoff'] = $plane->takeoff;
-        $this->data['hourly'] = $plane->hourly;
+        $this->data['id'] = $plane['id'];
+        $this->data['manufacturer'] = $plane['manufacturer'];
+        $this->data['model'] = $plane['model'];
+        $this->data['price'] = $plane['price'];
+        $this->data['seats'] = $plane['seats'];
+        $this->data['reach'] = $plane['reach'];
+        $this->data['cruise'] = $plane['cruise'];
+        $this->data['takeoff'] = $plane['takeoff'];
+        $this->data['hourly'] = $plane['hourly'];
 
 
         // Display the data
@@ -87,7 +84,6 @@ class Fleet extends Application
     {
         $this->load->helper('form');
         $plane = (array)$this->session->userdata('plane');
-        $this->session->set_userdata('plane', $plane);
         $this->data['id'] = $plane['id'];
 
         // if no errors, pass an empty message
@@ -97,7 +93,7 @@ class Fleet extends Application
 
         $fields = array(
             'fid'      => form_label('ID') . form_input('id', $plane['id']),
-            'fmake'      => form_label('Make') . form_input('make', $plane['manufacturer']),
+            'fmanufacturer'      => form_label('Manufacturer') . form_input('manufacturer', $plane['manufacturer']),
             'fmodel'      => form_label('Model') . form_input('model', $plane['model']),
             'fprice'      => form_label('Price') . form_input('price', $plane['price']),
             'fseats'      => form_label('Seats') . form_input('seats', $plane['seats']),
@@ -105,7 +101,7 @@ class Fleet extends Application
             'fcruise'      => form_label('Cruise') . form_input('cruise', $plane['cruise']),
             'ftakeoff'      => form_label('Takeoff') . form_input('takeoff', $plane['takeoff']),
             'fhourly'      => form_label('Hourly') . form_input('hourly', $plane['hourly']),
-            'zsubmit'    => form_submit('submit', 'Update Plane'),
+            'zsubmit'    => form_submit('holy', 'Update Plane'),
         );
         $this->data = array_merge($this->data, $fields);
 
@@ -121,7 +117,6 @@ class Fleet extends Application
         $this->load->library('form_validation');
         $this->form_validation->set_rules($this->fleetmdl->rules());
 
-
         // retrieve & update data transfer buffer
         $plane = (array) $this->session->userdata('plane');
         $plane = array_merge($plane, $this->input->post());
@@ -130,13 +125,14 @@ class Fleet extends Application
 
         // validate away
         if ($this->form_validation->run()) {
-            if ($this->fleetmdl->update($plane)) {
-                $this->alert('Plane ' . $plane->id . ' updated', 'success');
-            } else {
-                $this->alert('<strong>Validation errors!<strong><br>' . validation_errors(), 'danger');
-            }
-            $this->showit();
+            $this->alert('Plane ' . $plane->id . ' updated', 'success');
+            $this->fleetmdl->update($plane);
+        } else {
+            $this->alert('<strong>Validation errors!<strong><br>' . validation_errors(), 'danger');
         }
+
+        $this->session->set_userdata('plane', $plane);
+        $this->showit();
     }
 
     // build a suitable error mesage
@@ -156,8 +152,7 @@ class Fleet extends Application
     // Delete this item altogether
     public function delete()
     {
-        $dto = $this->session->userdata('plane');
-        $plane = $this->fleetmdl->get($dto['id']);
+        $plane = $this->session->userdata('plane');
         $this->fleetmdl->delete($plane['id']);
         $this->session->unset_userdata('plane');
         redirect('/fleet');

@@ -13,6 +13,15 @@
             To
         </th>
         <th>
+            Date
+        </th>
+        <th>
+            Departure
+        </th>
+        <th>
+            Arrival
+        </th>
+        <th>
             Distance
         </th>
     </tr>  
@@ -28,6 +37,15 @@
         </td>
         <td>
             {to}
+        </td>
+        <td>
+            {date}
+        </td>
+        <td>
+            {departure}
+        </td>
+        <td>
+            {arrival}
         </td>
         <td>
             {distance}

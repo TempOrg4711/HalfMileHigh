@@ -85,9 +85,9 @@ class Plane extends CI_Model
     }
 
     /*Setter for make data member.*/
-    public function setMake($value)
+    public function setManufacturer($value)
     {
-        $this->make = $value;
+        $this->$manufacturer = $value;
     }
 
     /*Setter for model data member.*/
