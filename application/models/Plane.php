@@ -78,10 +78,24 @@ class Plane extends CI_Model
         return new Plane;
     }
 
+    /*Getter for id*/
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /*Setter for task data member.*/
     public function setId($value)
     {
-        $this->id = $value;
+      if (strlen($value) === 0) {
+          throw new Exception("empty");
+      }
+
+      if (!ctype_alnum($value)) {
+        throw new Exception("alphanumeric");
+      }
+
+      $this->id = $value;
     }
 
     /*Setter for make data member.*/

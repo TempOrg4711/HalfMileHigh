@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
  * This class represents the homepage of our airport info site.
- * 
+ *
  * @author Sergey Bukharov, Karl Diab, Tim Davis, Jonathan Heggen, Kuanysh Boranbayev
  */
 class Homepage extends Application
@@ -49,7 +49,7 @@ class Homepage extends Application
             $this->data['airports'] = $this->flightsmdl->getDestApt();
             $this->data['airportsFrom'] = $this->flightsmdl->getFromApt();
 
-                    
+
             //display the page
             $this->render();
 	}

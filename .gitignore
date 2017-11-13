@@ -7,3 +7,8 @@
 /nbproject/private/
 /nbproject/
 tmp/*
+
+/vendor/
+
+composer.phar
+
