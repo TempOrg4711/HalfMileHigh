@@ -14,9 +14,6 @@
             To
         </th>
         <th>
-            Date
-        </th>
-        <th>
             Departure
         </th>
         <th>
@@ -38,9 +35,6 @@
         </td>
         <td>
             {to}
-        </td>
-        <td>
-            {date}
         </td>
         <td>
             {departure}

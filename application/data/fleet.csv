@@ -2,4 +2,4 @@ id,manufacturer,model,price,seats,reach,cruise,takeoff,hourly,key
 avanti,Boeing,T-148,4000,100,55000,750,350,2500,3
 baron,"Lockheed Martin",Arrow,700,100,55000,750,350,2500,1
 caravan,Boeing,747,1400,100,55000,750,350,333,2
-citation,Cessna,"Citation M2",3200,7,1550,748,978,323,4
+citation,Cessna,"Citation M2",3200,7,1550,748,978,323,"Update Plane"

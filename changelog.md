@@ -10,10 +10,6 @@ Project contributors:
 - Kuanysh
 - Jonathan
 
-## [Unreleased] - Nov 12, 11.21 pm
-### Updated
-- Minor bugfixes.
-
 ## [Unreleased] - Nov 12, 11.11 pm
 ### Added
 - Added scheduling ability.
