@@ -12,7 +12,7 @@
     </thead>
     {fleet}
       <tr>
-        <td><a href="/fleet/{id}">{id}</a></td>
+        <td><a href="/fleet/edit/{id}"><input type="button" value="{id}"/></a></td>
         <td>{make}</td>
         <td>{model}</td>
       </tr>

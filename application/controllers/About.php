@@ -2,13 +2,11 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
 /*
  * This class represents the about page of our airport info site.
  * Currently empty.
  * 
- * @author Jonathan
+ * @author Sergey Bukharov, Karl Diab, Tim Davis, Jonathan Heggen, Kuanysh Boranbayev
  */
 class About extends Application
 {

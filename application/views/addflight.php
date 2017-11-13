@@ -1,0 +1,1 @@
+<a href="/flights/add" class="btn btn-info" role="button">Add Flight</a>
